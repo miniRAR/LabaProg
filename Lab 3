@@ -1,0 +1,52 @@
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        string word1 = "apple";
+        string word2 = "banana";
+
+        List<char> uniqueChars = new List<char>();
+
+        // Перевіряємо кожен символ з першого слова
+        foreach (char c in word1)
+        {
+            // Якщо символ вже зустрічався раніше, пропускаємо його
+            if (uniqueChars.Contains(c))
+            {
+                continue;
+            }
+
+            // Перевіряємо, чи символ зустрічається в обох словах лише один раз
+            if (word1.IndexOf(c) == word1.LastIndexOf(c) && word2.IndexOf(c) == word2.LastIndexOf(c))
+            {
+                uniqueChars.Add(c);
+            }
+        }
+
+        // Перевіряємо кожен символ з другого слова
+        foreach (char c in word2)
+        {
+            // Якщо символ вже зустрічався раніше, пропускаємо його
+            if (uniqueChars.Contains(c))
+            {
+                continue;
+            }
+
+            // Перевіряємо, чи символ зустрічається в обох словах лише один раз
+            if (word1.IndexOf(c) == word1.LastIndexOf(c) && word2.IndexOf(c) == word2.LastIndexOf(c))
+            {
+                uniqueChars.Add(c);
+            }
+        }
+
+        // Виводимо результат
+        foreach (char c in uniqueChars)
+        {
+            Console.Write(c);
+        }
+    }
+}
+
