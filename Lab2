@@ -1,0 +1,102 @@
+using System;
+
+namespace SoftwareProducts
+{
+    enum Browser
+    {
+        Chrome,
+        Firefox,
+        Safari,
+        Edge
+    }
+
+    enum IDE
+    {
+        VisualStudio,
+        Eclipse,
+        IntelliJ,
+        PyCharm
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("List of software products:");
+            Console.WriteLine($"{(int)Browser.Chrome} - {Browser.Chrome}");
+            Console.WriteLine($"{(int)Browser.Firefox} - {Browser.Firefox}");
+            Console.WriteLine($"{(int)Browser.Safari} - {Browser.Safari}");
+            Console.WriteLine($"{(int)Browser.Edge} - {Browser.Edge}");
+            Console.WriteLine($"{(int)IDE.VisualStudio} - {IDE.VisualStudio}");
+            Console.WriteLine($"{(int)IDE.Eclipse} - {IDE.Eclipse}");
+            Console.WriteLine($"{(int)IDE.IntelliJ} - {IDE.IntelliJ}");
+            Console.WriteLine($"{(int)IDE.PyCharm} - {IDE.PyCharm}");
+
+            Console.Write("Enter comma-separated numbers of preferred software products: ");
+            string input = Console.ReadLine();
+            string[] productNumbers = input.Split(',');
+
+            Console.WriteLine("\nAuthor(s) of the selected software products:");
+
+            Console.Write("Browsers: ");
+            foreach (string number in productNumbers)
+            {
+                if (int.TryParse(number, out int n))
+                {
+                    if (Enum.IsDefined(typeof(Browser), n))
+                    {
+                        Console.Write(GetAuthorOfBrowser((Browser)n) + " ");
+                    }
+                }
+            }
+
+            Console.Write("\nIDEs: ");
+            foreach (string number in productNumbers)
+            {
+                if (int.TryParse(number, out int n))
+                {
+                    if (Enum.IsDefined(typeof(IDE), n))
+                    {
+                        Console.Write(GetAuthorOfIDE((IDE)n) + " ");
+                    }
+                }
+            }
+
+            Console.ReadKey();
+        }
+
+        static string GetAuthorOfBrowser(Browser browser)
+        {
+            switch (browser)
+            {
+                case Browser.Chrome:
+                    return "Google";
+                case Browser.Firefox:
+                    return "Mozilla";
+                case Browser.Safari:
+                    return "Apple";
+                case Browser.Edge:
+                    return "Microsoft";
+                default:
+                    return "";
+            }
+        }
+
+        static string GetAuthorOfIDE(IDE ide)
+        {
+            switch (ide)
+            {
+                case IDE.VisualStudio:
+                    return "Microsoft";
+                case IDE.Eclipse:
+                    return "Eclipse Foundation";
+                case IDE.IntelliJ:
+                    return "JetBrains";
+                case IDE.PyCharm:
+                    return "JetBrains";
+                default:
+                    return "";
+            }
+        }
+    }
+}
